@@ -634,6 +634,95 @@ def shuzu813():
     print(nums[0:l-k+1])
     print(nums[l-k+1:l-k+2],nums[l-k+2:l])
     t = l-k+1
+def zifu1758():
+    s="10010100"
+    s = list(s)
+    i = 1
+    f = 0
+    ch = s[0]
+    while i < len(s):
+        if ch == s[i]:
+            s[i] = '1' if s[i] == '0' else '0'
+            f+=1
+        ch=s[i]
+        i+=1
+    print(s,f,len(s)-f)
+def zhan895():
+    freq = defaultdict(int)
+    group = defaultdict(list)
+    freq[5]+=1
+    group[freq[5]].append(5)
+    freq[7] += 1
+    group[freq[7]].append(7)
+    print(freq,group)
+def zifu1769():
+    boxes = "001011"
+    L = len(boxes)
+    answer = [0 for _ in range(L)]
+    for i in range(L):
+        for j in range(L):
+            if i != j and boxes[j]=='1':
+                answer[i] = answer[i] + (abs(i-j))
+    print(answer)
+def zifu1769_2():
+    boxes = "001011"
+    left, right, operations = int(boxes[0]), 0, 0
+    for i in range(1, len(boxes)):
+        if boxes[i] == '1':
+            right += 1
+            operations += i
+    res = [operations]
+    for i in range(1, len(boxes)):
+        operations += left - right
+        if boxes[i] == '1':
+            left += 1
+            right -= 1
+        res.append(operations)
+    return res
+def erfen705():
+    nums = [-1, 0, 3, 5, 9, 12]
+    target = 9
+    l, r = 0, len(nums) - 1
+    while l<r:
+        m = (l + r) // 2
+        if nums[m] > target:
+            r = m
+        if nums[m] < target:
+            l = m+1
+        print(l,r,m)
+        if nums[m] == target:
+            return m
+    return -1
+def xiangqi1812():
+    coordinates = 'a1'
+    return (ord(coordinates[0])+int(coordinates[1]))%2 != 0
+def kuai1691():
+    cuboids = [[50, 45, 20], [95, 37, 53], [45, 23, 12],[18,48,49]]
+    for c in cuboids:
+        c.sort()
+    cuboids.sort(reverse=True)
+    l = len(cuboids)
+    h = [0] * l
+    print(cuboids)
+    for i in range(l):
+        for j in range(i):
+            print(i,j)
+            if cuboids[j][1] >= cuboids[i][1] and cuboids[j][2] >= cuboids[i][2]:
+                h[i] = max(h[i], h[j])
+        h[i] += cuboids[i][2]
+        print(h)
+    print(max(h))
+def min1827(nums):
+    s = 0  # 操作数
+    t = 0  # 临时变量
+    l = len(nums)
+    for i in range(l):
+        if nums[i] <= t:
+            t = t + 1
+            s = s + t - nums[i]
+        else:
+            t = nums[i]
+    return s
 
 if __name__ == '__main__':
-    shuzu813()
+    kuai1691()
