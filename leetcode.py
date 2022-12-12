@@ -146,8 +146,7 @@ def beautySum1781(s): #超出时间限制
         l = []
         for k, v in b.items():
             l.append(v)
-        l = sorted(l, reverse=-1)
-        return (l[0] - l[-1])
+        return (max(l) - min(l))
     L = []
     le = len(s)
     for i in range(le, 0, -1):
@@ -155,22 +154,6 @@ def beautySum1781(s): #超出时间限制
             if meili(s[j:j + i]):
                 L.append(meili(s[j:j + i]))
     return (sum(L))
-def beautySum(s: str) -> int:
-    from collections import defaultdict
-    n = len(s)
-    res = 0
-    for L in range(n):
-        dic = defaultdict(int)
-
-        for R in range(L, n):
-            dic[s[R]] += 1
-            if len(dic):
-                min_ = min(dic.values())
-                max_ = max(dic.values())
-                res += (max_ - min_)
-            print("res:",res)
-        print(dic)
-    return res
 def zuixiao1848(nums,t,s):
     m = 999
     for i in range(0, len(nums)):
@@ -723,6 +706,24 @@ def min1827(nums):
         else:
             t = nums[i]
     return s
-
+from collections import Counter
+def beatiful1781():
+    s = "wxrplttlrovaylgubhahanxjulhocnxehqdypxrpyubbwjxkusgrkyiefacbefygirmgcsciuevxbrtxqyubvbmrevlddgsedehaiqhduugiomavjcukqyzbinvrfquaoycqddhagwebyrqpsbyctthauimmowwsfyavppdgsllozkywhteyqhzgtwdznvgexjzlemfqnyjywczlxstngfvithbutbqmozpcizrqbhlangmbzubfqolccjivjjfvlhqpsksrumgvjmexlzcwiadjdbviazhpnpubsjljidqlcyctydhftrkojwfvifqukhiavsrczcteybmariedzpjttqvzgzktfmeoyokakryfyeladetdepzqzbmtsbdqeddqlmiqfjhbfltqdtxq"
+    re = 0
+    le = len(s)
+    for i in range(0,le):
+        count = defaultdict(int)
+        for j in range(i,le):
+            count[s[j]] += 1
+            re = re + max(count.values()) - min(count.values())
+    print(re)
 if __name__ == '__main__':
-    kuai1691()
+    print(beautySum1781("wxrplttlrovaylgub"
+                        "hahanxjulhocnxehqdypxrpyubb"
+                        "wjxkusgrkyiefacbefygirmgcsciuevxbrtxq"
+                        "yubvbmrevlddgsedehaiqhduugiomavjcukqyzbinvrf"
+                        "quaoycqddhagwebyrqpsbyctthauimmowwsfyavppdgsllozkywh"
+                        "teyqhzgtwdznvgexjzlemfqnyjywczlxstngfvithbutbqmozpciz"
+                        "rqbhlangmbzubfqolccjivjjfvlhqpsksrumgvjmexlzcwiadjdbviazhpnp"
+                        "ubsjljidqlcyctydhftrkojwfvifqukhiavsrczcteybmariedzpjttqvzgzktfm"
+                        "eoyokakryfyeladetdepzqzbmtsbdqeddqlmiqfjhbfltqdtxq"))
