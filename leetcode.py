@@ -506,20 +506,6 @@ def pipeizfc792():
     s = "dsahjpjauf"
     words = ["ahjpjau", "ja", "ahbwzgqnuk", "tnmlanowax",'dh']
     a = [zixulie(s,word) for word in words]
-#     print(sum(a))
-# class Solution:
-#     def numMatchingSubseq(self, s: str, words: List[str]) -> int:
-#         def zixulie(s1,s2):
-#             l1 = len(s1)
-#             l2 = len(s2)
-#             j = 0
-#             for i in range(l1):
-#                 if s1[i] == s2[j]:
-#                     j+=1
-#                 if j == l2:
-#                     return True
-#             return False
-#         return sum([zixulie(s,word) for word in words])
 def zixuliekuan891():
     nums = [3,7,2,3]
     sum = 0
@@ -717,13 +703,63 @@ def beatiful1781():
             count[s[j]] += 1
             re = re + max(count.values()) - min(count.values())
     print(re)
+def zhongweishu():
+    nums1 = [100001]
+    nums2 = [100000]
+    i = 0
+    j = 0
+    l = []
+    l1 = len(nums1)
+    l2 = len(nums2)
+    l3 = (l1 + l2) // 2 + 1
+    if not nums1:
+        if l2%2 ==0:
+             return (nums2[l2//2]+nums2[l2//2-1])/2
+        else:
+            return nums2[l2//2]
+    if not nums2:
+        if l1%2 ==0:
+             return (nums1[l1//2]+nums1[l1//2-1])/2
+        else:
+            return nums1[l1//2]
+
+    while len(l) < l3:
+        if i<l1 and nums1[i] <= nums2[j]:
+            l.append(nums1[i])
+            i += 1
+        else:
+            l.append(nums2[j])
+            j += 1
+    if (l1 + l2) % 2 == 0:
+        return (l[-1] + l[-2]) / 2
+    else:
+        return l[-1]
+def shuzu1785():
+    import math
+    nums = [1,-1,1]
+    limit = 3
+    goal = -4
+    i = 0
+    s = sum(nums)
+    t = goal - s
+    i = math.ceil(abs(t) / limit)
+    print(i)
+def shuzu1764():   # while--else--方法，很值得学习
+    groups = [[10,-2],[1,2,3,4]]
+    nums = [1,2,3,4,10,-2]
+    k = 0
+    for i in groups:
+        while k < len(nums):
+            if nums[k:k+len(i)] == i:
+                k += len(i)
+                break
+            k += 1
+        else:
+            return False
+    return True
+def jiaohuan1703():
+    nums = [1,0,0,0,0,0,1,1]
+    k = 3
+    chedibuhui = 'g'
 if __name__ == '__main__':
-    print(beautySum1781("wxrplttlrovaylgub"
-                        "hahanxjulhocnxehqdypxrpyubb"
-                        "wjxkusgrkyiefacbefygirmgcsciuevxbrtxq"
-                        "yubvbmrevlddgsedehaiqhduugiomavjcukqyzbinvrf"
-                        "quaoycqddhagwebyrqpsbyctthauimmowwsfyavppdgsllozkywh"
-                        "teyqhzgtwdznvgexjzlemfqnyjywczlxstngfvithbutbqmozpciz"
-                        "rqbhlangmbzubfqolccjivjjfvlhqpsksrumgvjmexlzcwiadjdbviazhpnp"
-                        "ubsjljidqlcyctydhftrkojwfvifqukhiavsrczcteybmariedzpjttqvzgzktfm"
-                        "eoyokakryfyeladetdepzqzbmtsbdqeddqlmiqfjhbfltqdtxq"))
+    print(shuzu1764())
