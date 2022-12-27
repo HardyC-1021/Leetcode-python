@@ -25,135 +25,6 @@ def test(n):
                 List.append(f"{j}/{i}")
     return List
     # return [f"{j}/{i}" for i in range(2, n + 1) for j in range(1, i) if gcd(i, j) == 1]
-def circle1828():
-    points = [[1,3],[3,3],[5,3],[2,2]]
-    queries = [[2,3,1],[4,3,1],[1,1,2]]
-    answer = []
-    for xo,yo,r in queries:
-        i = 0
-        for x,y in points:
-            if (x-xo)**2 + (y-yo)**2 - r**2 <= 0:
-                i+=1
-        answer.append(i)
-    return answer
-def shulie1439():
-    mat = [[1, 10, 10], [1, 4, 5], [2, 3, 6]]
-    k = 7
-    list = []
-    Sum = 0
-    for a in mat[0]:
-        list.append(Sum)
-    print(list)
-def kthSmallest1439(mat,k):
-    res = [0]
-    resc = []
-    for row in mat:
-    #     for x in row:
-    #         for r in resc:
-    #             res.append(x+r)
-    #     resc = deepcopy(res)
-        res = [x + r for x in row for r in res]
-        print(res)
-        # res = sorted([x + r for x in row for r in res])[:k]
-def xuanzhuan1886():
-    mat = [[0,0,0],[0,1,0],[1,1,1]]
-    target = [[1, 1, 1], [0, 1, 0], [0, 0, 0]]
-    l= len(mat)
-    t=0
-    while mat != target:
-        if t == 4:
-            return False
-        middle = [[] for _ in range(l)]
-        for i in range(0,l):
-            for j in range(l-1,-1,-1):
-                middle[i].append(mat[j][i])
-        mat = middle
-        t+=1
-    return True
-def peng(L,a):
-    if L:
-        if L[-1] > 0 and a < 0:
-            if L[-1] > -a:
-                return L
-            elif L[-1] < -a:
-                L.pop(-1)
-                return peng(L,a)
-            elif L[-1] == -a:
-                L.pop(-1)
-                return L
-        else:
-            L.append(a)
-            return L
-    else:
-        L.append(a)
-        return L
-def pengzhuang735():
-    asteroids = [-1,-2,5,5]
-    list = []
-    for a in asteroids:
-        list = peng(list,a)
-    return list
-def shuzu1338():
-    arr = [3, 3, 3, 3, 5, 5, 5, 2, 2, 7,3,5,3,1,2,7,7,7,7,7]
-    dict = {}
-    di = []
-    a = set(arr)
-    l = len(arr)/2
-    for a in arr:
-        dict[a] = 0
-    for a in arr:
-        for item in dict:
-            if a == item:
-                dict[item] +=1
-    p = sorted(dict.items(), key=lambda e: e[1],reverse=-1)
-    di = []
-    for i in range(0,len(p)):
-        di.append(p[i][0])
-    print(di)
-    i=0
-    while len(arr) > l:
-        arr = list(a for a in arr if a!=di[i])
-        i+=1
-    print(i)
-    print(arr)
-    # a = [ x for x in a if x !=0]
-    # while
-def zifuchuan1903():
-    num = "35427"
-    l = len(num)
-    for i in range(l+2,0,-1):
-        arr = []
-        for j in range(0,l-i+1):
-            # print(i,j)
-            # print(num[j:j + i])
-            if int(num[j:j+i])%2 != 0:
-                arr.append(str(num[j:j+i]))
-            sorted(arr)
-        if len(arr) != 0:
-            return arr[0]
-def meili(z):
-    from collections import Counter
-    b = Counter(z)
-    l = []
-    for k, v in b.items():
-        l.append(v)
-    l = sorted(l, reverse=-1)
-    print(l[0] - l[-1])
-def beautySum1781(s): #超出时间限制
-    from collections import Counter
-    def meili(z):
-        b = Counter(z)
-        l = []
-        for k, v in b.items():
-            l.append(v)
-        return (max(l) - min(l))
-    L = []
-    le = len(s)
-    for i in range(le, 0, -1):
-        for j in range(0, le - i + 1):
-            if meili(s[j:j + i]):
-                L.append(meili(s[j:j + i]))
-    return (sum(L))
 def zuixiao1848(nums,t,s):
     m = 999
     for i in range(0, len(nums)):
@@ -761,5 +632,68 @@ def jiaohuan1703():
     nums = [1,0,0,0,0,0,1,1]
     k = 3
     chedibuhui = 'g'
+def shizi1753():
+    a = 1
+    b = 8
+    c = 8
+    s = []
+    s.append(a)
+    s.append(b)
+    s.append(c)
+    s.sort()
+    if s[2] == s[1]:
+        return s[2]
+    k = 0
+    while s[0] + s[1] > s[2]:
+        s[0] -= 1
+        s[1] -= 1
+        k += 1
+    if s[0] + s[1] <= s[2]:
+        return k+s[0]+s[1]
+def caozuo2011():
+    operations = ["--X", "X++", "X++"]
+    k=0
+    return sum(1 if s == "X++" or s == "++X" else -1 for s in operations)
+def chuan1754():
+    word1 = "cabaa"
+    word2 = "bcaaa"
+    merge = []
+    i,j = 0,0
+    l1 = len(word1)
+    l2 = len(word2)
+    while i < l1 or j < l2:
+        if i < l1 and word1[i:] > word2[j:]:
+            merge.append(word1[i])
+            i += 1
+        else:
+            merge.append(word2[j])
+            j += 1
+    print(merge)
+def tonggou1759():
+    s = "zzzzz"
+    i,j = 0,0
+    suu = 0
+    t = 1
+    l = len(s)
+    while i < l and j < l:
+        if s[i] == s[j]:
+            suu = suu + t
+            j = j + 1
+            t = t + 1
+        else:
+            t = 1
+            i = j
+    print(suu)
+def OX2027():
+    s = "OXOXXOOX"
+    res = 0
+    i = 0
+    while i < len(s):
+        if s[i] == 'X':
+            i = i + 3
+            res += 1
+        else:
+            i = i + 1
+    print(res)
 if __name__ == '__main__':
-    print(shuzu1764())
+    OX2027()
