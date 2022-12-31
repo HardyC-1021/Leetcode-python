@@ -695,5 +695,86 @@ def OX2027():
         else:
             i = i + 1
     print(res)
+def qianhouzhui1750():
+    s = "cabaabac"
+    l = len(s)-1
+    i = 0
+    while s[i] == s[l] and i < l:
+        while s[i] == s[i+1]:
+            i += 1
+        while s[l] == s[l-1]:
+            l -= 1
+        i += 1
+        l -= 1
+    if l-i+1 <0:
+        return 0
+    else:
+        return l-i+1
+def shuzu2023():
+    nums1 = [3,1]
+    nums2 = [2,3]
+    nums3 = [1,2]
+
+    nums1 = set(nums1)
+    nums2 = set(nums2)
+    nums3 = set(nums3)
+    s = []
+    dic = defaultdict(int)
+    for i in nums1:
+        dic[i] += 1
+    for i in nums2:
+        dic[i] += 1
+    for i in nums3:
+        dic[i] += 1
+    for k,v in dic.items():
+        if v >= 2:
+            s.append(k)
+    return(s)
+import bisect
+class ExamRoom(object):
+    def __init__(self, N):
+        self.N = N
+        self.students = []
+
+    def seat(self):
+        # Let's determine student, the position of the next
+        # student to sit down.
+        if not self.students:
+            student = 0
+        else:
+            # Tenatively, dist is the distance to the closest student,
+            # which is achieved by sitting in the position 'student'.
+            # We start by considering the left-most seat.
+            dist, student = self.students[0], 0
+            for i, s in enumerate(self.students):
+                if i:
+                    prev = self.students[i-1]
+                    # For each pair of adjacent students in positions (prev, s),
+                    # d is the distance to the closest student;
+                    # achieved at position prev + d.
+                    d = (s - prev) // 2
+                    if d > dist:
+                        dist, student = d, prev + d
+
+            # Considering the right-most seat.
+            d = self.N - 1 - self.students[-1]
+            if d > dist:
+                student = self.N - 1
+
+        # Add the student to our sorted list of positions.
+        bisect.insort(self.students, student)
+        return student
+
+    def leave(self, p):
+        self.students.remove(p)
+def zuowei2037():
+    seats = [4, 1, 5, 9]
+    students = [1, 3, 2, 6]
+    seats.sort()
+    students.sort()
+    s = 0
+    for i in range(0,len(seats)):
+        s = s + abs(seats[i]-students[i])
+    print(s)
 if __name__ == '__main__':
-    OX2027()
+    zuowei2037()
