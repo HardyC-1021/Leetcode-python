@@ -776,5 +776,133 @@ def zuowei2037():
     for i in range(0,len(seats)):
         s = s + abs(seats[i]-students[i])
     print(s)
+def zimu2351():
+    s = "abccbaacz"
+    # 数组方法
+    # t = []
+    # for i in s:
+    #     if i in t:
+    #         return i
+    #     t.append(i)
+    # 字典方法
+    dic = defaultdict(int)
+    for i in s:
+        dic[i] += 1
+        if dic[i] == 2:
+            return i
+from heapq import heappush,heappop
+def dingdan1081():
+    # orders = [[10, 5, 0], [15, 2, 1], [25, 1, 1], [30, 4, 0]]
+    orders = [[10, 5, 0], [5, 5, 0],[15, 5, 0], [10, 5, 1], [5, 5, 1]]
+    buy, sell = [], []
+    for p, a, t in orders:
+        if t == 0:
+            while a and sell and sell[0][0] <= p:
+                x, y = heappop(sell)
+                if a >= y:
+                    a -= y
+                else:
+                    heappush(sell, (x, y - a))
+                    a = 0
+            if a:
+                heappush(buy, (-p, a))
+        else:
+            while a and buy and -buy[0][0] >= p:
+                x, y = heappop(buy)
+                if a >= y:
+                    a -= y
+                else:
+                    heappush(buy, (x, y - a))
+                    a = 0
+            if a:
+                heappush(sell, (p, a))
+    mod = 10 ** 9 + 7
+    print(sum(v[1] for v in buy + sell) % mod)
+def zifushuzi2042():
+    s = "sunset is at 7 51 pm overnight lows will be in the low 50 and 60 s"
+    s = s.split(' ')
+    t = -1
+    for i in s:
+        if i.isdigit():
+            if int(i) > t:
+                t = int(i)
+            else:
+                return False
+    return True
+def areNumbersAscending(s: str) -> bool:
+    lst = -float('inf')
+    sp = s.split(' ')
+    for c in sp:
+        if c.isdigit():
+            if int(c) <= lst:
+                return False
+            lst = int(c)
+    return True
+def zuida1802():
+    n = 6
+    index = 1
+    maxSum = 10
+    pass
+def countPairs1803():
+    nums = [1, 4, 2, 7]
+    low = 2
+    high = 16
+    f = 0
+    l = len(nums)
+    for i in range(l):
+        for j in range(i+1,l):
+            if low<= nums[i] ^ nums[j] <= high:
+                f += 1
+    print(f)
+def geweihe2108():
+    num = 15
+    f = 0
+    for i in range(1, num + 1):
+        x = i
+        s = 0
+        while x:
+            s = s + x % 10
+            x = x // 10
+        if s % 2 == 0:
+            f += 1
+    return f
+def minOperations():
+    nums = [5,5,8,1,1]
+    x = 10
+    n = len(nums)
+    total = sum(nums)
+
+    if total < x:
+        return -1
+
+    right = 0
+    lsum, rsum = 0, total
+    ans = n + 1
+    for left in range(-1, n - 1):
+        if left != -1:
+            lsum += nums[left]
+        while right < n and lsum + rsum > x:
+            rsum -= nums[right]
+            right += 1
+        if lsum + rsum == x:
+            ans = min(ans, (left + 1) + (n - right))
+
+    return -1 if ans > n else ans
+def minop1806():
+    n = 4
+    f = 0
+    perm = list(range(n))
+    ans = perm.copy()
+    arr = list(range(1,n+1))
+    print(perm,arr,ans)
+    while arr != ans:
+        for i in range(n):
+            if i%2 == 0:
+                arr[i] = perm[int(i/2)]
+            else:
+                arr[i] = perm[int(n/2 + (i-1)/2)]
+        perm = arr.copy()
+        f += 1
+    return f
 if __name__ == '__main__':
-    zuowei2037()
+    print(minop1806())
