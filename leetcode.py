@@ -904,5 +904,86 @@ def minop1806():
         perm = arr.copy()
         f += 1
     return f
+def evaluate():
+    s = "(name)is(age)yearsold"
+    knowledge = [["name", "bob"], ["age", "two"]]
+    d = dict(knowledge)
+    ans, start = [], -1
+    for i, c in enumerate(s):
+        if c == '(':
+            start = i
+        elif c == ')':
+            if d.get(s[start + 1: i]):
+                ans.append(d.get(s[start + 1: i]))
+            else:
+                ans.append('?')
+            start = -1
+        elif start == -1:
+            ans.append(c)
+    return ''.join(ans)
+def chongpai2087():
+    s = "ilovecodingonleetcode"
+    target = "code"
+    ls = len(s)
+    lt = len(target)
+    dictt = Counter(target)
+    dicts = Counter(s)
+    ans = []
+    for k,v in dictt.items():
+        ans.append(dicts[k]//v)
+    print(min(ans))
+import math
+def gongyueshu1819():
+    def gvd_many(s):
+        g = 0
+        for i in range(len(s)):
+            if i == 0:
+                g = s[i]
+            else:
+                g = math.gcd(g, s[i])
+        return g
+    s = []
+    nums = [5,15,40,5,6]
+    l = len(nums)
+    for i in range(l):
+        for j in range(i+1,l+1):
+            print(nums[i:j])
+            s.append(gvd_many(nums[i:j]))
+    print(s)
+    print(len(set(s)))
+def jvzi1813():
+    sentence1 = "c h p Ny"
+    sentence2 = "c BDQ r h p Ny"
+    s1 = sentence1.split(' ')
+    s2 = sentence2.split(" ")
+    l1 = len(s1)
+    l2 = len(s2)
+    if l1 >= l2:
+        for i in range(l2):
+            if s2[i] == s1[i]:
+                continue
+            elif s2[i] == s1[i-l2]:
+                continue
+            else:
+                return False
+    else:
+        for i in range(l1):
+            if s1[i] == s2[i]:
+                continue
+            elif s1[i] == s2[i-l1]:
+                continue
+            else:
+                return False
+    return True
+def fanzhuan1814():
+    nums = [13, 10, 35, 24, 76]
+    res = 0
+    cnt = Counter()
+    for i in nums:
+        j = int(str(i)[::-1])
+        res += cnt[i - j]
+        cnt[i - j] += 1
+    return res % (10 ** 9 + 7)
+
 if __name__ == '__main__':
-    print(minop1806())
+    print( fanzhuan1814())
