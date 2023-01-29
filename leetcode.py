@@ -984,6 +984,99 @@ def fanzhuan1814():
         res += cnt[i - j]
         cnt[i - j] += 1
     return res % (10 ** 9 + 7)
+class MKAverage1825:
+    def __init__(self, m: int, k: int):
+        self.m = m
+        self.k = k
+        self.stk = []
 
+    def addElement(self, num: int) -> None:
+        self.stk.append(num)
+        print('add')
+    def calculateMKAverage(self) -> int:
+        print('cal')
+        if len(self.stk) < self.m:
+            return -1
+        else:
+            temp = deepcopy(self.stk[-self.m:])
+            for i in range(self.k):
+                temp.pop(temp.index(max(temp)))
+                temp.pop(temp.index(min(temp)))
+            return int(sum(temp) / len(temp))
+def strongPasswordCheckerII(self, password: str) -> bool:
+    a = 0
+    b = 0
+    c = 0
+    d = 0
+    if len(password) < 8:
+        return False
+    char = ''
+    for i in password:
+        if char == i:
+            return False
+        char = i
+        if 96 < ord(i) < 123:
+            a = 1
+        if 47 < ord(i) < 58:
+            b = 1
+        if 32 < ord(i) < 48 or ord(i) == 64 or ord(i) == 94:
+            c = 1
+        if 64 < ord(i) < 91:
+            d = 1
+    if a == 1 and b == 1 and c ==1 and d ==1:
+        return True
+    else:
+        return False
+def getSmallestString1664():
+    n = 5
+    k = 73
+    s = []
+    t = 'abcdefghijklmnopqrstuvwxyz'
+    while n > 0:
+        if k - (n-1) >= 26:
+            s.append(t[26 - 1])
+            k = k - 26
+        else:
+            s.append(t[k-(n-1) - 1])
+            k = n - 1
+        n -= 1
+    print(''.join(s[::-1]))
+def greatestLetter2309():
+    s = "lEeTcOdE"
+    Big = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    Small = 'abcdefghijklmnopqrstuvwxyz'
+    c = ''
+    for i in range(26):
+        if Big[i] in s and Small[i] in s:
+            c = Big[i]
+    print(c)
+def waysTomakeFair1664():
+    pass
+def countAsterisks2315():
+    s = "l|*e*et|c**o|*de|"
+    t = 0
+    i = 0
+    while i < len(s):
+        if s[i] == '*':
+            t += 1
+            i += 1
+        elif s[i] == '|':
+            i += 1
+            while i < len(s) and s[i] != '|':
+                i += 1
+            i += 1
+        else:
+            i += 1
+    print(t)
+def huiwenchuan5():
+    s1 = "babad"
+    s3 = ''
+    for i in range(len(s1)):
+        for j in range(i+1,len(s1)+1):
+            s2 = s1[i:j]
+            if s2 == s2[::-1]:
+                if len(s2) > len(s3):
+                    s3 = s2
+    return s3
 if __name__ == '__main__':
-    print( fanzhuan1814())
+    huiwenchuan5()
