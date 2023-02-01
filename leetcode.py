@@ -1078,5 +1078,67 @@ def huiwenchuan5():
                 if len(s2) > len(s3):
                     s3 = s2
     return s3
+def atoi8(): #未成功
+    s = "+-12"
+    re = []
+    f = 0
+
+    for i in s:
+        if i == ' ':
+            continue
+        if i == '+' or i == '-' and f == 0:
+            re.append(i)
+            continue
+        if i.isdigit():
+            re.append(i)
+            f = 1
+            continue
+        if not i.isdigit():
+            break
+    if re:
+        s = int(''.join(re))
+        if s >= 2147483647:
+            return (2147483647)
+        elif s <= -2147483648:
+            return (-2147483648)
+        else:
+            return (s)
+
+    else:
+        return 0
+class Solution:
+    def myAtoi(self, s: str) -> int:
+        INT_MIN, INT_MAX = -2**31, 2**31-1
+        s = s.strip()
+        if not s:
+            return 0
+        i, sign = 0, 1
+        res = 0
+        if s[0] in '+-':
+            sign = 1 if s[0] == '+' else -1
+            i += 1
+        while i < len(s):
+            if not s[i].isdigit(): break
+            res = res * 10 + int(s[i])
+            if not INT_MIN <= sign * res <= INT_MAX:
+                return INT_MIN if sign * res < INT_MIN else INT_MAX
+            i += 1
+        return sign * res
+def decode2325():
+    key = "the quick brown fox jumps over the lazy dog"
+    message = "vkbs bs t suepuv"
+    k = []
+    for i in key:
+        if i != ' ' and i not in k:
+            k.append(i)
+    s = 'abcdefghijklmnopqrstuvwxyz'
+    re = []
+    for j in message:
+        if j == ' ':
+            re.append(' ')
+        else:
+            index = k.index(j)
+            re.append(s[index])
+    return ''.join(re)
 if __name__ == '__main__':
-    huiwenchuan5()
+    print(decode2325())
