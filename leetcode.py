@@ -1,3 +1,4 @@
+import datetime
 from math import gcd
 from copy import deepcopy
 def Gongyueshu():
@@ -1124,6 +1125,7 @@ class Solution:
                 return INT_MIN if sign * res < INT_MIN else INT_MAX
             i += 1
         return sign * res
+#值得再看一遍的二叉树
 def decode2325():
     key = "the quick brown fox jumps over the lazy dog"
     message = "vkbs bs t suepuv"
@@ -1140,5 +1142,108 @@ def decode2325():
             index = k.index(j)
             re.append(s[index])
     return ''.join(re)
+class erchashu1145:
+    class TreeNode:
+        def __init__(self, val=0, left=None, right=None):
+            self.val = val
+            self.left = left
+            self.right = right
+    def btreeGameWinningMove(self, root, n: int, x: int) -> bool:
+        ls , rs = 0, 0
+        def dfs(node):
+            if node is None:
+                return 0
+
+            l = dfs(node.left)
+            r = dfs(node.right)
+            if node.val == x:
+                nonlocal ls, rs
+                ls = l
+                rs = r
+            return l + r + 1
+        dfs(root)
+        return max(ls, rs, n - 1 - ls - rs) * 2 > n
+def erchashu2331(root) -> bool:
+    def dfs(node):
+        if node is None:
+            return 0
+        l = dfs(node.left)
+        r = dfs(node.right)
+        if node.val == 2:
+            return l or r
+        if node.val == 3:
+            return l and r
+        if node.right is None and node.left is None:
+            return node.val
+    s = dfs(root)
+    return True if s == 1 else False
+def getMaximumConsecutive1798():
+    nums = [1, 4, 10, 3, 1]
+    s = []
+    re = 0
+    i = 0
+    nums.sort()
+    while True:
+        s.append(nums[i])
+        if re + 1 == s.sum():
+            i += 1
+        else:
+            s.pop()
+def yuangongCard1604():
+    keyName = ["daniel", "daniel", "daniel", "luis", "luis", "luis", "luis"]
+    keyTime = ["10:00", "10:40", "11:00", "09:00", "11:00", "13:00", "15:00"]
+    stk = []
+    L = len(keyName)
+    i = 0
+    while i < L:
+        times = 1
+        name = keyName[i]
+        j = i + 1
+        while j < L and name == keyName[j]:
+            source = 60
+            s0 = (int(keyTime[j-1][:2]) * 60 + int(keyTime[j-1][3:]))
+            s1 = (int(keyTime[j][:2]) * 60 + int(keyTime[j][3:]))
+            if s1 - s0 < source:
+                source = source - s1 + s0
+                times += 1
+            else:
+                source = 60
+            j += 1
+        if times >= 3:
+            stk.append(keyName[i])
+        i = j
+    print(stk)
+def tijie1604():
+    keyName = ["daniel", "daniel", "daniel", "luis", "luis", "luis", "luis"]
+    keyTime = ["10:00", "10:40", "11:00", "09:00", "11:00", "13:00", "15:00"]
+
+    timeMap = defaultdict(list)
+    for name, time in zip(keyName, keyTime):
+        hour, minute = int(time[:2]), int(time[3:])
+        timeMap[name].append(hour * 60 + minute)
+    print(timeMap)
+    ans = []
+    for name, times in timeMap.items():
+        times.sort()
+        print((times,times[2:]))
+        ####神之一手 ####神之一手 ####神之一手 ####神之一手 ####神之一手 ####神之一手 ####神之一手 ####神之一手
+        if any(t2 - t1 <= 60 for t1, t2 in zip(times, times[2:])):
+            ans.append(name)
+    ans.sort()
+    return ans
+def folder1233():
+    folder = ["/a", "/a/b", "/a/bc","/c/d", "/c/d/e", "/c/f","c/de"]
+    folder.sort()
+    stk = [folder[0]]
+    for i in folder[1:]:
+        m,n = len(stk[-1]),len(i)
+        if m <= n:
+            s = stk[-1] + '/'
+            if s not in i:
+                stk.append(i)
+    print(stk)
+    print(folder)
 if __name__ == '__main__':
-    print(decode2325())
+    stk = []
+    stk.append([1,2])
+    print(stk)
